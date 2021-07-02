@@ -1,6 +1,15 @@
 package homework.v3;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import homework.v3.da.serialize.JsonReaderHomework;
+import homework.v3.da.serialize.JsonWriterHomework;
+import homework.v3.da.serialize.SerializeReaderHomework;
+import homework.v3.da.serialize.SerializeWriterHomework;
+import homework.v3.entity.JsonFileClass;
+
+import java.io.IOException;
+
 /**
  * Задание
  * 1) Составить файл с JSON-объектом, который "разложен" в пакете homework.v3.classwork.entity.
@@ -21,4 +30,25 @@ package homework.v3;
  * */
 
 public class HomeWork {
+    public static final String SOURCE_FILE = "homework.parameters.json";
+    public static final String RESULT_FILE_SER = "homework.parameters.ser";
+    public static final String RESULT_FILE_SER_JSON = "homework.result.ser.parameters.json";
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+        //3) Считать получившийся homework.parameters.json в память
+        System.out.println("Считываем данные из файла " + SOURCE_FILE + "\n");
+        JsonFileClass srcData = new JsonReaderHomework().read(SOURCE_FILE);
+        System.out.println(srcData);
+        System.out.println();
+
+        //4) Сериализовать его с помощью встроенного механиза сериализации в файл с именем homework.parameters.ser
+        System.out.println("Записываем данные в файл " + RESULT_FILE_SER + "\n");
+        new SerializeWriterHomework().write(srcData, RESULT_FILE_SER);
+
+        //* 6) Считать данные из файла homework.parameters.ser в память и сохранить в формате JSON в файл с именем homework.result.ser.parameters.json
+        JsonFileClass jsonFileClass = new SerializeReaderHomework().read(RESULT_FILE_SER);
+        System.out.println("Записываем данные в файл " + RESULT_FILE_SER_JSON + "\n");
+        new JsonWriterHomework().write(jsonFileClass, RESULT_FILE_SER_JSON);
+    }
 }
