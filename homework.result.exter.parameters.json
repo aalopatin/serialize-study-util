@@ -1,0 +1,220 @@
+{
+  "version": "String",
+  "parameters": [
+    {
+      "name": "logger.local.level",
+      "description": "Description of logger.local.level",
+      "isList": false,
+      "roles": [
+        "ADMIN",
+        "USER"
+      ],
+      "type": "STRING",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "VERSION",
+              "value": "false"
+            },
+            {
+              "code": "CHANNEL",
+              "value": "${channel-code}"
+            },
+            {
+              "code": "SUBSYSTEM",
+              "value": "UFS_FRAUD"
+            },
+            {
+              "code": "TERBANK",
+              "value": null
+            },
+            {
+              "code": "OSB",
+              "value": null
+            },
+            {
+              "code": "VSP",
+              "value": null
+            }
+          ],
+          "values": [
+            "DEBUG"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "logger.filter.denyLogger",
+      "description": "Description of logger.filter.denyLogger",
+      "isList": false,
+      "roles": [
+        "ADMIN",
+        "USER"
+      ],
+      "type": "STRING",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "VERSION",
+              "value": "false"
+            },
+            {
+              "code": "CHANNEL",
+              "value": "${channel-code}"
+            },
+            {
+              "code": "SUBSYSTEM",
+              "value": "UFS_FRAUD"
+            },
+            {
+              "code": "TERBANK",
+              "value": null
+            },
+            {
+              "code": "OSB",
+              "value": null
+            },
+            {
+              "code": "VSP",
+              "value": null
+            }
+          ],
+          "values": [
+            "ru.sbrf.ufs.platform.core.listener.CustomServletRequestListener"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "platform.audit.needValidate",
+      "description": "Description of platform.audit.needValidate",
+      "isList": false,
+      "roles": [
+        "ADMIN",
+        "USER"
+      ],
+      "type": "BOOLEAN",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "VERSION",
+              "value": "false"
+            },
+            {
+              "code": "CHANNEL",
+              "value": "${channel-code}"
+            },
+            {
+              "code": "SUBSYSTEM",
+              "value": "UFS_FRAUD"
+            },
+            {
+              "code": "TERBANK",
+              "value": null
+            },
+            {
+              "code": "OSB",
+              "value": null
+            },
+            {
+              "code": "VSP",
+              "value": null
+            }
+          ],
+          "values": [
+            "true"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "platform.audit.writer",
+      "description": "Description of platform.audit.writer",
+      "isList": false,
+      "roles": [
+        "ADMIN",
+        "USER"
+      ],
+      "type": "STRING",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "VERSION",
+              "value": "false"
+            },
+            {
+              "code": "CHANNEL",
+              "value": "${channel-code}"
+            },
+            {
+              "code": "SUBSYSTEM",
+              "value": "UFS_FRAUD"
+            },
+            {
+              "code": "TERBANK",
+              "value": null
+            },
+            {
+              "code": "OSB",
+              "value": null
+            },
+            {
+              "code": "VSP",
+              "value": null
+            }
+          ],
+          "values": [
+            "customWriter"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "integration.esbClient.fraudMon.mode",
+      "description": "Description of integration.esbClient.fraudMon.mode",
+      "isList": false,
+      "roles": [
+        "ADMIN",
+        "USER"
+      ],
+      "type": "STRING",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "VERSION",
+              "value": "false"
+            },
+            {
+              "code": "CHANNEL",
+              "value": "${channel-code}"
+            },
+            {
+              "code": "SUBSYSTEM",
+              "value": "UFS_FRAUD"
+            },
+            {
+              "code": "TERBANK",
+              "value": null
+            },
+            {
+              "code": "OSB",
+              "value": null
+            },
+            {
+              "code": "VSP",
+              "value": null
+            }
+          ],
+          "values": [
+            "SELECTOR"
+          ]
+        }
+      ]
+    }
+  ]
+}

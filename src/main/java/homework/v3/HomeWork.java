@@ -1,12 +1,16 @@
 package homework.v3;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import homework.v3.da.externalize.ExternalizeReaderHomework;
+import homework.v3.da.externalize.ExternalizeWriterHomework;
+import homework.v3.da.externalize.JsonReaderExternalizeHomework;
+import homework.v3.da.externalize.JsonWriterExternalizeHomework;
 import homework.v3.da.serialize.JsonReaderHomework;
 import homework.v3.da.serialize.JsonWriterHomework;
 import homework.v3.da.serialize.SerializeReaderHomework;
 import homework.v3.da.serialize.SerializeWriterHomework;
 import homework.v3.entity.JsonFileClass;
+import homework.v3.externalize.JsonFileClassExternalize;
 
 import java.io.IOException;
 
@@ -32,7 +36,9 @@ import java.io.IOException;
 public class HomeWork {
     public static final String SOURCE_FILE = "homework.parameters.json";
     public static final String RESULT_FILE_SER = "homework.parameters.ser";
+    public static final String RESULT_FILE_EXTER = "homework.parameters.exter";
     public static final String RESULT_FILE_SER_JSON = "homework.result.ser.parameters.json";
+    public static final String RESULT_FILE_EXTER_JSON = "homework.result.exter.parameters.json";
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
@@ -46,9 +52,21 @@ public class HomeWork {
         System.out.println("Записываем данные в файл " + RESULT_FILE_SER + "\n");
         new SerializeWriterHomework().write(srcData, RESULT_FILE_SER);
 
-        //* 6) Считать данные из файла homework.parameters.ser в память и сохранить в формате JSON в файл с именем homework.result.ser.parameters.json
+        //5) Сериализовать его с использованием интерфейса Externalizable в файл с именем homework.parameters.exter
+        JsonFileClassExternalize srcDataExternalize = new JsonReaderExternalizeHomework().read(SOURCE_FILE);
+        System.out.println("Записываем данные в файл " + RESULT_FILE_EXTER + "\n");
+        new ExternalizeWriterHomework().write(srcDataExternalize, RESULT_FILE_EXTER);
+
+
+        //6) Считать данные из файла homework.parameters.ser в память и сохранить в формате JSON в файл с именем homework.result.ser.parameters.json
         JsonFileClass jsonFileClass = new SerializeReaderHomework().read(RESULT_FILE_SER);
         System.out.println("Записываем данные в файл " + RESULT_FILE_SER_JSON + "\n");
         new JsonWriterHomework().write(jsonFileClass, RESULT_FILE_SER_JSON);
+
+        //7) Считать данные из файла homework.parameters.exter в память и сохранить в формате JSON в файл с именем homework.result.exter.parameters.json
+        JsonFileClassExternalize jsonFileClassExternalize = new ExternalizeReaderHomework().read(RESULT_FILE_EXTER);
+        System.out.println("Записываем данные в файл " + RESULT_FILE_EXTER_JSON + "\n");
+        new JsonWriterExternalizeHomework().write(jsonFileClassExternalize, RESULT_FILE_EXTER_JSON);
+
     }
 }

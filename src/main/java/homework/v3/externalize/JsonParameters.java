@@ -2,11 +2,11 @@ package homework.v3.externalize;
 
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.List;
 
 @JsonPropertyOrder({"name", "description", "isList", "roles", "type", "bundle"})
-public class JsonParameters implements Serializable {
+public class JsonParameters implements Externalizable {
     
     public static final long SerialVersionUID = 1L;
     
@@ -16,6 +16,26 @@ public class JsonParameters implements Serializable {
     private List<String> roles;
     private String type;
     private List<Bundle> bundle;
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(this.getName());
+        out.writeObject(this.getDescription());
+        out.writeBoolean(this.getisList());
+        out.writeObject(this.getRoles());
+        out.writeObject(this.getType());
+        out.writeObject(this.getBundle());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.setName((String) in.readObject());
+        this.setDescription((String) in.readObject());
+        this.setList((boolean) in.readBoolean());
+        this.setRoles((List<String>) in.readObject());
+        this.setType((String) in.readObject());
+        this.setBundle((List<Bundle>) in.readObject());
+    }
 
     public String getDescription() {
         return description;
@@ -81,4 +101,5 @@ public class JsonParameters implements Serializable {
                 s;
 
     }
+
 }

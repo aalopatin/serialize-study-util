@@ -2,13 +2,13 @@ package homework.v3.externalize;
 
 import org.codehaus.jackson.annotate.JsonGetter;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.List;
 
-public class JsonFileClass implements Serializable{
+public class JsonFileClassExternalize implements Externalizable {
     
     public static final long SerialVersionUID = 1L;
-    
+
     private String version;
     public List<JsonParameters> parameters;
     
@@ -24,11 +24,24 @@ public class JsonFileClass implements Serializable{
     public String getVersion() {
         return this.version;
     }
-    @JsonGetter("parameters")
+
     public void setParameters(List<JsonParameters> parameters) {
         this.parameters = parameters;
     }
-    public List<JsonParameters> setParameters() {
+    @JsonGetter("parameters")
+    public List<JsonParameters> getParameters() {
         return this.parameters;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(this.getVersion());
+        out.writeObject(this.getParameters());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.setVersion((String) in.readObject());
+        this.setParameters((List<JsonParameters>) in.readObject());
     }
 }
